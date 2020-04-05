@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#02064a"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/foodimg"
+
+            android:layout_width="70dp"
+            android:layout_height="86dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/Food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@id/foodimg"
+            android:layout_toRightOf="@id/foodimg"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/Descript"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@id/foodimg"
+            android:layout_toRightOf="@id/foodimg"
+            android:textSize="20dp"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
