@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -30,6 +31,8 @@ public class Menu extends AppCompatActivity {
     BufferedInputStream is;
     String line=null;
     String result=null;
+    ArrayList <Product> products =new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class Menu extends AppCompatActivity {
         listView=(ListView)findViewById(R.id.lview);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         collectData();
-        MenuList menuList=new MenuList(this,id,name,price,desc,imgurl);
+        MenuList menuList=new MenuList(this,id,name,price,desc,imgurl,products);
         listView.setAdapter(menuList);
 
 

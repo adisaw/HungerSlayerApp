@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -23,36 +24,33 @@ import androidx.annotation.Nullable;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class MenuList extends ArrayAdapter<String> {
+public class OrderList extends BaseAdapter {
 
-    String [] name;
-    String [] desc;
-    String [] imgUrl;
-    int [] id;
-    int [] price;
+
     Activity context;
     Bitmap bitmap;
     ArrayList <Product> listProducts= new ArrayList<>();
-    public MenuList(Activity context,int[] id, String[] name, int [] price, String[] desc, String[] imgUrl, ArrayList<Product> temp) {
-        super(context,R.layout.layout_menu,name);
+    public OrderList(Activity context, ArrayList<Product> temp) {
+
         this.context=context;
-        this.name=name;
-        this.price=price;
-        this.id=id;
-        this.imgUrl=imgUrl;
-        this.desc=desc;
         this.listProducts=temp;
 
     }
-
-    public int getcount() {
+    @Override
+    public int getCount() {
         return listProducts.size();
     }
 
-
-    public Product getitem(int position) {
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+    @Override
+    public Product getItem(int position) {
         return listProducts.get(position);
     }
+
+
 
     @Override
     public View getView(final int position , @Nullable View convertView, @NonNull ViewGroup parent)
@@ -62,7 +60,7 @@ public class MenuList extends ArrayAdapter<String> {
         if(r==null)
         {
             LayoutInflater layoutInflater =context.getLayoutInflater();
-            r=layoutInflater.inflate(R.layout.layout_menu,null,true);
+            r=layoutInflater.inflate(R.layout.layout_orderdetails,null,true);
             viewHolder=new ViewHolder(r);
             r.setTag(viewHolder);
         }
@@ -70,46 +68,17 @@ public class MenuList extends ArrayAdapter<String> {
         {
             viewHolder=(ViewHolder)r.getTag();
         }
-        final Product products=getitem(position);
-        viewHolder.tvw1.setText(name[position]);
-        viewHolder.tvw2.setText(desc[position]);
-        String temp="Rs "+Integer.toString(price[position]);
-        viewHolder.tvw3.setText(temp);
-        viewHolder.et1.setText(products.cartQuantity+" ");
-        new GetImageFromUrl(viewHolder.ivw).execute(imgUrl[position]);
-        viewHolder.ib1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateQuantity(position,viewHolder.et1,1);
-            }
-        });
-        viewHolder.ib2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateQuantity(position,viewHolder.et1,-1);
-            }
-        });
+        final Product products=getItem(position);
+        viewHolder.tvw1.setText(products.Name);
 
+        String temp="Rs "+Integer.toString(products.Price);
+        viewHolder.tvw2.setText(temp);
+        viewHolder.tvw3.setText("Quantity "+products.cartQuantity+" ");
+        new GetImageFromUrl(viewHolder.ivw).execute(products.ImgUrl);
 
         return r;
     }
-    private void updateQuantity(int position, EditText edTextQuantity, int value) {
 
-        Product products = getitem(position);
-        if(value > 0)
-        {
-            products.cartQuantity = products.cartQuantity + 1;
-        }
-        else
-        {
-            if(products.cartQuantity > 0)
-            {
-                products.cartQuantity = products.cartQuantity - 1;
-            }
-
-        }
-        edTextQuantity.setText(products.cartQuantity+"");
-    }
 
     class ViewHolder{
 
@@ -117,22 +86,16 @@ public class MenuList extends ArrayAdapter<String> {
         TextView tvw2;
         TextView tvw3;
         ImageView ivw;
-        Button ib1;
-        Button ib2;
-        EditText et1;
+
 
         ViewHolder(View v)
         {
-            tvw1=(TextView)v.findViewById(R.id.Food);
-            tvw2=(TextView)v.findViewById(R.id.Descript);
-            tvw3=(TextView)v.findViewById(R.id.Price);
             ivw=(ImageView)v.findViewById(R.id.foodimg);
-            ib1=(Button)v.findViewById(R.id.ib_plus);
-            ib2=(Button)v.findViewById(R.id.ib_minus);
-            et1=(EditText)v.findViewById(R.id.editTxt);
+            tvw1=(TextView)v.findViewById(R.id.Food);
+            tvw2=(TextView)v.findViewById(R.id.Price);
+            tvw3=(TextView)v.findViewById(R.id.Quantity);
+
         }
-
-
     }
     public  class GetImageFromUrl extends AsyncTask<String, Void , Bitmap>
     {

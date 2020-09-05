@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -18,19 +22,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import android.os.Handler;
 
 
-import javax.net.ssl.HttpsURLConnection;
+
+
 
 public class background extends AsyncTask<String,Void, String>  {
 
     AlertDialog dialog;
     Context context;
+    String type;
     public background(Context context)
     {
         this.context=context;
     }
-
+    String email,pass;
     @Override
     protected void onPreExecute() {
         dialog=new AlertDialog.Builder(context).create();
@@ -42,22 +49,38 @@ public class background extends AsyncTask<String,Void, String>  {
     protected void onPostExecute(String s) {
         dialog.setMessage(s);
         dialog.show();
-        Intent intent_name = new Intent();
-        intent_name.setClass(context,Menu.class);
-        context.startActivity(intent_name);
+        if(type.equals("SignUp"))
+        {
+            Intent intent=new Intent(context,SignIn.class);
+            context.startActivity(intent);
+
+        }
+        else {
+
+            if (s.equals("User Created") || s.equals("login successful...!")) {
+                backgroundgetuser bg = new backgroundgetuser(context);
+                bg.execute(email, pass);
+            }
+        }
+
+
+
     }
+
+
+
 
     @Override
     protected String doInBackground(String... voids) {
         String result = "";
-        String type = voids[0];
+        type = voids[0];
         if (type.equals("SignIn")) {
 
 
-            String email = voids[1];
-            String pass = voids[2];
+            email = voids[1];
+            pass = voids[2];
 
-            String connstr = "http://10.0.2.2:8089/login.php";
+            String connstr = "http://192.168.1.34:8089/login.php";
 
             try {
                 URL url = new URL(connstr);
@@ -97,12 +120,12 @@ public class background extends AsyncTask<String,Void, String>  {
         if (type.equals("SignUp")) {
 
 
-            String email = voids[1];
+            email = voids[1];
             String name = voids[2];
-            String pass=voids[3];
+            pass=voids[3];
             String mobile=voids[4];
 
-            String connstr = "http://10.0.2.2:8089/signup.php";
+            String connstr = "http://192.168.1.34:8089/signup.php";
 
             try {
                 URL url = new URL(connstr);

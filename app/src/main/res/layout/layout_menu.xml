@@ -12,9 +12,9 @@
 
         <ImageView
             android:id="@+id/foodimg"
-
-            android:layout_width="70dp"
-            android:layout_height="86dp"
+            android:layout_marginTop="26dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/Food"
@@ -37,11 +37,80 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:layout_toEndOf="@id/foodimg"
             android:layout_toRightOf="@id/foodimg"
-            android:textSize="20dp"
+            android:textSize="15dp"
             />
+
+        <TextView
+            android:id="@+id/Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="110dp"
+            android:layout_toEndOf="@id/foodimg"
+
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+
+
+
+
+        <Button
+            android:id="@+id/ib_plus"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="155dp"
+            android:adjustViewBounds="true"
+
+            android:cropToPadding="false"
+            android:scaleType="centerInside"
+            android:text="+"
+            android:textSize="35dp"
+            android:textColor="@android:color/white"
+            android:background="@color/orderbtn"
+            android:layout_toEndOf="@+id/Price"
+            />
+
+        <EditText
+            android:id="@+id/editTxt"
+            android:layout_width="30dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="155dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toEndOf="@+id/ib_plus"
+            android:inputType="number"
+            android:textColor="@android:color/white"
+            android:text="0" />
+
+
+        <Button
+            android:id="@+id/ib_minus"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="155dp"
+            android:scaleType="centerInside"
+            android:background="@color/orderbtn"
+            android:text="-"
+            android:textSize="35dp"
+            android:textColor="@android:color/white"
+            android:layout_toEndOf="@+id/editTxt"
+            android:layout_marginRight="8dp"
+           />
+
+
+
+
+
 
     </RelativeLayout>
 

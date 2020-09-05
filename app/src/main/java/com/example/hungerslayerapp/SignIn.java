@@ -30,7 +30,7 @@ public class SignIn extends AppCompatActivity {
         String password=edtPassword.getText().toString();
         String type="SignIn";
 
-        Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
         background bg=new background(this);
         bg.execute(type,emailID,password);
 
