@@ -80,7 +80,7 @@ public class background extends AsyncTask<String,Void, String>  {
             email = voids[1];
             pass = voids[2];
 
-            String connstr = "http://192.168.1.34:8089/login.php";
+            String connstr = "http://your ipv4 address:8089/login.php";
 
             try {
                 URL url = new URL(connstr);
@@ -125,7 +125,7 @@ public class background extends AsyncTask<String,Void, String>  {
             pass=voids[3];
             String mobile=voids[4];
 
-            String connstr = "http://192.168.1.34:8089/signup.php";
+            String connstr = "http://your ipv4 address:8089/signup.php";
 
             try {
                 URL url = new URL(connstr);
