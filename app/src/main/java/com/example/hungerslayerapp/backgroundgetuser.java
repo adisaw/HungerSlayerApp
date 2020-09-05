@@ -51,7 +51,7 @@ public class backgroundgetuser extends AsyncTask<String, Void, String> {
         String pass = voids[1];
 
         try {
-            URL url = new URL("http://192.168.1.34:8089/getuser.php");
+            URL url = new URL("http://your ipv4 address:8089/getuser.php");
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             http.setRequestMethod("POST");
             http.setDoInput(true);
