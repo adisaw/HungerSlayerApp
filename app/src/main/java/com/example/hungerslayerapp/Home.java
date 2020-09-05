@@ -41,7 +41,7 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView txtFullName,txtEmail,txtPhone;
-    String urladdress="http://192.168.1.34:8089/menudisp.php";
+    String urladdress="http://your ipv4 address:8089/menudisp.php";
     int []id;
     String[] name;
     String []desc;
