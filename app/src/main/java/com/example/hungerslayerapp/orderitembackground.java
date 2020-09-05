@@ -61,7 +61,7 @@ public class orderitembackground extends AsyncTask<String,Void, String>  {
         ID=voids[1];
         Quantity=voids[2];
 
-        String connstr = "http://192.168.1.34:8089/enterOrderItem.php";
+        String connstr = "http://your ipv4 address:8089/enterOrderItem.php";
 
         try {
             URL url = new URL(connstr);
